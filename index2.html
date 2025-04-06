@@ -55,18 +55,28 @@
   <h1 id="title"></h1>
   <p id="description"></p>
 
+  <!-- Project 1: Ultrasonic Radar -->
   <div class="project">
     <h2 id="project1Title"></h2>
     <p id="project1Desc"></p>
-    <img src="https://via.placeholder.com/600x300?text=Ultrasonic+Sensor" alt="Ultrasonic Project">
+    <img src="https://github.com/mahdikhanari/my-electronics-projects/raw/main/ulpcb1.png" alt="Ultrasonic Radar PCB 1">
     <pre><code id="project1Code"></code></pre>
   </div>
 
+  <!-- Project 2: Ultrasonic Radar PCB -->
   <div class="project">
     <h2 id="project2Title"></h2>
     <p id="project2Desc"></p>
-    <img src="https://via.placeholder.com/600x300?text=PCB+Design" alt="PCB Design">
+    <img src="https://github.com/mahdikhanari/my-electronics-projects/raw/main/ulpcb2.png" alt="Ultrasonic Radar PCB 2">
     <pre><code id="project2Code"></code></pre>
+  </div>
+
+  <!-- Project 3: Ultrasonic Radar Schematic -->
+  <div class="project">
+    <h2 id="project3Title"></h2>
+    <p id="project3Desc"></p>
+    <img src="https://github.com/mahdikhanari/my-electronics-projects/raw/main/ulsch1.png" alt="Ultrasonic Radar Schematic">
+    <pre><code id="project3Code"></code></pre>
   </div>
 
   <script>
@@ -74,40 +84,52 @@
       en: {
         title: "My Electronics Projects",
         description: "Welcome! Here are a few samples of my personal electronics work.",
-        project1Title: "Ultrasonic Sensor Alarm",
-        project1Desc: "This project uses an ultrasonic sensor to detect motion and trigger an alarm.",
-        project1Code: `# Arduino sample
-long duration;
-int distance;
-void setup() {
-  pinMode(8, OUTPUT);
-  Serial.begin(9600);
-}`,
-        project2Title: "Custom PCB Design",
-        project2Desc: "I designed and manufactured a custom PCB for a simple motor driver using EasyEDA.",
-        project2Code: `// Schematic Snippet
-VCC -- R1 -- Base of Q1
-Motor + --> Collector of Q1
-Emitter --> GND`
+        project1Title: "Ultrasonic Radar PCB 1",
+        project1Desc: "This is the first PCB design for my ultrasonic radar project.",
+        project1Code: `# PCB Design 1
+// Design for radar sensor circuit
+R1 -- 1kΩ resistor
+C1 -- 10µF capacitor
+Ground -- Common ground connection`,
+        project2Title: "Ultrasonic Radar PCB 2",
+        project2Desc: "This is the second PCB design for my ultrasonic radar project.",
+        project2Code: `# PCB Design 2
+// Power supply and connections
+VCC -- 5V power input
+GND -- Ground
+Output -- Signal for radar sensor`,
+        project3Title: "Ultrasonic Radar Schematic",
+        project3Desc: "This schematic represents the ultrasonic radar system's working principle.",
+        project3Code: `# Schematic for Ultrasonic Radar
+// Components:
+Trigger pin -- Sensor trigger
+Echo pin -- Sensor echo
+Microcontroller -- Controls radar sensor`
       },
       fa: {
         title: "پروژه‌های الکترونیکی من",
         description: "خوش اومدی! اینجا چند نمونه از پروژه‌های الکترونیکی شخصی من رو می‌بینی.",
-        project1Title: "سنسور اولتراسونیک با آلارم",
-        project1Desc: "در این پروژه از سنسور اولتراسونیک برای تشخیص حرکت و فعال‌سازی آلارم استفاده شده.",
-        project1Code: `# نمونه کد آردوینو
-long duration;
-int distance;
-void setup() {
-  pinMode(8, OUTPUT);
-  Serial.begin(9600);
-}`,
-        project2Title: "طراحی PCB سفارشی",
-        project2Desc: "با استفاده از EasyEDA یک برد مدار چاپی ساده برای درایور موتور طراحی کردم.",
-        project2Code: `// قسمت شماتیک
-VCC -- R1 -- بیس ترانزیستور Q1
-موتور + --> کالکتور Q1
-امیتر --> زمین`
+        project1Title: "مدار PCB اولتراسونیک 1",
+        project1Desc: "این طراحی PCB اول برای پروژه رادار اولتراسونیک من است.",
+        project1Code: `# طراحی PCB 1
+// طراحی مدار سنسور رادار
+R1 -- مقاومت 1 کیلو اهم
+C1 -- خازن 10µF
+زمین -- اتصال مشترک زمین`,
+        project2Title: "مدار PCB اولتراسونیک 2",
+        project2Desc: "این طراحی PCB دوم برای پروژه رادار اولتراسونیک من است.",
+        project2Code: `# طراحی PCB 2
+// منبع تغذیه و اتصالات
+VCC -- ورودی تغذیه 5V
+GND -- زمین
+خروجی -- سیگنال سنسور رادار`,
+        project3Title: "شماتیک رادار اولتراسونیک",
+        project3Desc: "این شماتیک نمایانگر اصول کار سیستم رادار اولتراسونیک است.",
+        project3Code: `# شماتیک رادار اولتراسونیک
+// اجزا:
+پین Trigger -- تحریک سنسور
+پین Echo -- بازگشت سیگنال سنسور
+میکروکنترلر -- کنترل سنسور رادار`
       }
     };
 
@@ -119,7 +141,10 @@ VCC -- R1 -- بیس ترانزیستور Q1
       project1Code: document.getElementById("project1Code"),
       project2Title: document.getElementById("project2Title"),
       project2Desc: document.getElementById("project2Desc"),
-      project2Code: document.getElementById("project2Code")
+      project2Code: document.getElementById("project2Code"),
+      project3Title: document.getElementById("project3Title"),
+      project3Desc: document.getElementById("project3Desc"),
+      project3Code: document.getElementById("project3Code")
     };
 
     const switcher = document.getElementById("languageSwitcher");
