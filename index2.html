@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Electronics Projects</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      direction: ltr;
+      text-align: left;
+      padding: 2rem;
+    }
+    body.rtl {
+      direction: rtl;
+      text-align: right;
+    }
+    select {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- زبان -->
+  <select id="languageSwitcher">
+    <option value="en">English</option>
+    <option value="fa">فارسی</option>
+  </select>
+
+  <h1 id="title"></h1>
+  <p id="description"></p>
+
+  <script>
+    const translations = {
+      en: {
+        title: "My Electronics Projects",
+        description: "This is a sample of my electronics work."
+      },
+      fa: {
+        title: "پروژه‌های الکترونیکی من",
+        description: "این نمونه‌ای از کارهای الکترونیکی منه."
+      }
+    };
+
+    const title = document.getElementById("title");
+    const description = document.getElementById("description");
+    const switcher = document.getElementById("languageSwitcher");
+
+    function updateLanguage(lang) {
+      document.body.classList.toggle('rtl', lang === 'fa');
+      title.textContent = translations[lang].title;
+      description.textContent = translations[lang].description;
+    }
+
+    // initial load
+    updateLanguage('en');
+
+    switcher.addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+  </script>
+</body>
+</html>
