@@ -1,55 +1,62 @@
-
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>پروژه‌های الکترونیکی من</title>
+  <title>My Electronics Projects</title>
   <style>
     body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: Tahoma, sans-serif;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
+      font-family: sans-serif;
+      direction: ltr;
+      text-align: left;
+      padding: 2rem;
     }
-    h1, h2 {
-      color: #00ffc3;
+    body.rtl {
+      direction: rtl;
+      text-align: right;
     }
-    .project, .blog-post {
-      border: 1px solid #333;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 20px;
-      background-color: #1e1e1e;
-    }
-    a {
-      color: #00bcd4;
+    select {
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1>پروژه‌های الکترونیکی من</h1>
-  <p>سلام! من یک دانشجوی مهندسی برق هستم و اینجا پروژه‌ها، طراحی‌های PCB و مقالات آموزشی خودم رو قرار می‌دم.</p>
+  <!-- زبان -->
+  <select id="languageSwitcher">
+    <option value="en">English</option>
+    <option value="fa">فارسی</option>
+  </select>
 
-  <h2>پروژه‌ها</h2>
+  <h1 id="title"></h1>
+  <p id="description"></p>
 
-  <div class="project">
-    <h3>ردیاب التراسونیک</h3>
-    <p>پروژه‌ای برای ردیابی اجسام با استفاده از ماژول HC-SR04 و میکروکنترلر آردوینو.</p>
-  </div>
+  <script>
+    const translations = {
+      en: {
+        title: "My Electronics Projects",
+        description: "This is a sample of my electronics work."
+      },
+      fa: {
+        title: "پروژه‌های الکترونیکی من",
+        description: "این نمونه‌ای از کارهای الکترونیکی منه."
+      }
+    };
 
-  <div class="project">
-    <h3>چراغ هوشمند با ESP32</h3>
-    <p>چراغی که با اپلیکیشن موبایل کنترل می‌شه، دارای سنسور نور و حالت اتوماتیک.</p>
-  </div>
+    const title = document.getElementById("title");
+    const description = document.getElementById("description");
+    const switcher = document.getElementById("languageSwitcher");
 
-  <h2>بلاگ</h2>
+    function updateLanguage(lang) {
+      document.body.classList.toggle('rtl', lang === 'fa');
+      title.textContent = translations[lang].title;
+      description.textContent = translations[lang].description;
+    }
 
-  <div class="blog-post">
-    <h3>آموزش طراحی PCB در Altium</h3>
-    <p>در این مقاله مراحل کامل طراحی یک برد دو لایه با Altium رو توضیح دادم. <a href="#">ادامه مطلب...</a></p>
-  </div>
+    // initial load
+    updateLanguage('en');
+
+    switcher.addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+  </script>
 </body>
 </html>
