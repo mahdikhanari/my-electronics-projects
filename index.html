@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Electronics Projects</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
+      direction: ltr;
+      text-align: left;
+      padding: 2rem;
+    }
+    body.rtl {
+      direction: rtl;
+      text-align: right;
+    }
+    select {
+      background-color: #333;
+      color: #fff;
+      padding: 0.4rem;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    .project {
+      border: 1px solid #333;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 0.5rem;
+    }
+    pre {
+      background-color: #2e2e2e;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: monospace;
+      color: #00ffae;
+    }
+  </style>
+</head>
+<body>
+  <select id="languageSwitcher">
+    <option value="en">English</option>
+    <option value="fa">فارسی</option>
+  </select>
+
+  <h1 id="title"></h1>
+  <p id="description"></p>
+
+  <!-- Project 1: Ultrasonic Radar -->
+  <div class="project">
+    <h2 id="project1Title"></h2>
+    <p id="project1Desc"></p>
+    <img src="https://github.com/mahdikhanari/my-electronics-projects/raw/main/ulpcb1.png" alt="Ultrasonic Radar PCB 1">
+    <pre><code id="project1Code"></code></pre>
+  </div>
+
+  <!-- Project 2: Ultrasonic Radar PCB -->
+  <div class="project">
+    <h2 id="project2Title"></h2>
+    <p id="project2Desc"></p>
+    <img src="https://github.com/mahdikhanari/my-electronics-projects/raw/main/ulpcb2.png" alt="Ultrasonic Radar PCB 2">
+    <pre><code id="project2Code"></code></pre>
+  </div>
+
+  <!-- Project 3: Ultrasonic Radar Schematic -->
+  <div class="project">
+    <h2 id="project3Title"></h2>
+    <p id="project3Desc"></p>
+    <img src="https://github.com/mahdikhanari/my-electronics-projects/raw/main/ulsch1.png" alt="Ultrasonic Radar Schematic">
+    <pre><code id="project3Code"></code></pre>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "My Electronics Projects",
+        description: "Welcome! Here are a few samples of my personal electronics work.",
+        project1Title: "Ultrasonic Radar PCB 1",
+        project1Desc: "This is the first PCB design for my ultrasonic radar project.",
+        project1Code: `# PCB Design 1
+// Design for radar sensor circuit
+R1 -- 1kΩ resistor
+C1 -- 10µF capacitor
+Ground -- Common ground connection`,
+        project2Title: "Ultrasonic Radar PCB 2",
+        project2Desc: "This is the second PCB design for my ultrasonic radar project.",
+        project2Code: `# PCB Design 2
+// Power supply and connections
+VCC -- 5V power input
+GND -- Ground
+Output -- Signal for radar sensor`,
+        project3Title: "Ultrasonic Radar Schematic",
+        project3Desc: "This schematic represents the ultrasonic radar system's working principle.",
+        project3Code: `# Schematic for Ultrasonic Radar
+// Components:
+Trigger pin -- Sensor trigger
+Echo pin -- Sensor echo
+Microcontroller -- Controls radar sensor`
+      },
+      fa: {
+        title: "پروژه‌های الکترونیکی من",
+        description: "خوش اومدی! اینجا چند نمونه از پروژه‌های الکترونیکی شخصی من رو می‌بینی.",
+        project1Title: "مدار PCB اولتراسونیک 1",
+        project1Desc: "این طراحی PCB اول برای پروژه رادار اولتراسونیک من است.",
+        project1Code: `# طراحی PCB 1
+// طراحی مدار سنسور رادار
+R1 -- مقاومت 1 کیلو اهم
+C1 -- خازن 10µF
+زمین -- اتصال مشترک زمین`,
+        project2Title: "مدار PCB اولتراسونیک 2",
+        project2Desc: "این طراحی PCB دوم برای پروژه رادار اولتراسونیک من است.",
+        project2Code: `# طراحی PCB 2
+// منبع تغذیه و اتصالات
+VCC -- ورودی تغذیه 5V
+GND -- زمین
+خروجی -- سیگنال سنسور رادار`,
+        project3Title: "شماتیک رادار اولتراسونیک",
+        project3Desc: "این شماتیک نمایانگر اصول کار سیستم رادار اولتراسونیک است.",
+        project3Code: `# شماتیک رادار اولتراسونیک
+// اجزا:
+پین Trigger -- تحریک سنسور
+پین Echo -- بازگشت سیگنال سنسور
+میکروکنترلر -- کنترل سنسور رادار`
+      }
+    };
+
+    const elements = {
+      title: document.getElementById("title"),
+      description: document.getElementById("description"),
+      project1Title: document.getElementById("project1Title"),
+      project1Desc: document.getElementById("project1Desc"),
+      project1Code: document.getElementById("project1Code"),
+      project2Title: document.getElementById("project2Title"),
+      project2Desc: document.getElementById("project2Desc"),
+      project2Code: document.getElementById("project2Code"),
+      project3Title: document.getElementById("project3Title"),
+      project3Desc: document.getElementById("project3Desc"),
+      project3Code: document.getElementById("project3Code")
+    };
+
+    const switcher = document.getElementById("languageSwitcher");
+
+    function updateLanguage(lang) {
+      document.body.classList.toggle('rtl', lang === 'fa');
+      for (const key in elements) {
+        elements[key].textContent = translations[lang][key];
+      }
+    }
+
+    // Load English by default
+    updateLanguage('en');
+
+    switcher.addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+  </script>
+</body>
+</html>
