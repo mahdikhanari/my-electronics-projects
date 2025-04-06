@@ -5,7 +5,9 @@
   <title>My Electronics Projects</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
       direction: ltr;
       text-align: left;
       padding: 2rem;
@@ -15,12 +17,36 @@
       text-align: right;
     }
     select {
+      background-color: #333;
+      color: #fff;
+      padding: 0.4rem;
+      border: none;
+      border-radius: 5px;
       margin-bottom: 1rem;
+    }
+    .project {
+      border: 1px solid #333;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 0.5rem;
+    }
+    pre {
+      background-color: #2e2e2e;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: monospace;
+      color: #00ffae;
     }
   </style>
 </head>
 <body>
-  <!-- زبان -->
   <select id="languageSwitcher">
     <option value="en">English</option>
     <option value="fa">فارسی</option>
@@ -29,29 +55,83 @@
   <h1 id="title"></h1>
   <p id="description"></p>
 
+  <div class="project">
+    <h2 id="project1Title"></h2>
+    <p id="project1Desc"></p>
+    <img src="https://via.placeholder.com/600x300?text=Ultrasonic+Sensor" alt="Ultrasonic Project">
+    <pre><code id="project1Code"></code></pre>
+  </div>
+
+  <div class="project">
+    <h2 id="project2Title"></h2>
+    <p id="project2Desc"></p>
+    <img src="https://via.placeholder.com/600x300?text=PCB+Design" alt="PCB Design">
+    <pre><code id="project2Code"></code></pre>
+  </div>
+
   <script>
     const translations = {
       en: {
         title: "My Electronics Projects",
-        description: "This is a sample of my electronics work."
+        description: "Welcome! Here are a few samples of my personal electronics work.",
+        project1Title: "Ultrasonic Sensor Alarm",
+        project1Desc: "This project uses an ultrasonic sensor to detect motion and trigger an alarm.",
+        project1Code: `# Arduino sample
+long duration;
+int distance;
+void setup() {
+  pinMode(8, OUTPUT);
+  Serial.begin(9600);
+}`,
+        project2Title: "Custom PCB Design",
+        project2Desc: "I designed and manufactured a custom PCB for a simple motor driver using EasyEDA.",
+        project2Code: `// Schematic Snippet
+VCC -- R1 -- Base of Q1
+Motor + --> Collector of Q1
+Emitter --> GND`
       },
       fa: {
         title: "پروژه‌های الکترونیکی من",
-        description: "این نمونه‌ای از کارهای الکترونیکی منه."
+        description: "خوش اومدی! اینجا چند نمونه از پروژه‌های الکترونیکی شخصی من رو می‌بینی.",
+        project1Title: "سنسور اولتراسونیک با آلارم",
+        project1Desc: "در این پروژه از سنسور اولتراسونیک برای تشخیص حرکت و فعال‌سازی آلارم استفاده شده.",
+        project1Code: `# نمونه کد آردوینو
+long duration;
+int distance;
+void setup() {
+  pinMode(8, OUTPUT);
+  Serial.begin(9600);
+}`,
+        project2Title: "طراحی PCB سفارشی",
+        project2Desc: "با استفاده از EasyEDA یک برد مدار چاپی ساده برای درایور موتور طراحی کردم.",
+        project2Code: `// قسمت شماتیک
+VCC -- R1 -- بیس ترانزیستور Q1
+موتور + --> کالکتور Q1
+امیتر --> زمین`
       }
     };
 
-    const title = document.getElementById("title");
-    const description = document.getElementById("description");
+    const elements = {
+      title: document.getElementById("title"),
+      description: document.getElementById("description"),
+      project1Title: document.getElementById("project1Title"),
+      project1Desc: document.getElementById("project1Desc"),
+      project1Code: document.getElementById("project1Code"),
+      project2Title: document.getElementById("project2Title"),
+      project2Desc: document.getElementById("project2Desc"),
+      project2Code: document.getElementById("project2Code")
+    };
+
     const switcher = document.getElementById("languageSwitcher");
 
     function updateLanguage(lang) {
       document.body.classList.toggle('rtl', lang === 'fa');
-      title.textContent = translations[lang].title;
-      description.textContent = translations[lang].description;
+      for (const key in elements) {
+        elements[key].textContent = translations[lang][key];
+      }
     }
 
-    // initial load
+    // Load English by default
     updateLanguage('en');
 
     switcher.addEventListener('change', (e) => {
